@@ -1,0 +1,10 @@
+{
+  "name": "advent-of-code-2021",
+  "version": "1.0.0",
+  "description": "Advent of Code, 2021",
+  "main": "index.js",
+  "repository": "https://github.com/mmargel/advent-of-code-2021.git",
+  "author": "mmargel",
+  "license": "MIT",
+  "type": "module"
+}
