@@ -2,7 +2,7 @@ import { runTest } from "../utils/runTest.js";
 
 const windowLength = 3;
 
-const countPositiveChanges = (values) => {
+const countPositiveChanges = (values: number[]) => {
   return values.filter((_, index, array) =>
     index > array.length - windowLength
       ? false
@@ -10,4 +10,5 @@ const countPositiveChanges = (values) => {
   ).length;
 };
 
-runTest(countPositiveChanges);
+export const part2 = () =>
+  runTest({ day: 1, part: 2, testMethod: countPositiveChanges });
