@@ -1,8 +1,8 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "baseUrl": "./src",
-    "rootDir": "./src",
+    "baseUrl": "problems",
+    "rootDir": "problems",
     "target": "es2016",
     "module": "esnext",
     "moduleResolution": "node",
@@ -15,6 +15,4 @@
     "skipLibCheck": true,
     "outDir": "dist",
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"],
 }

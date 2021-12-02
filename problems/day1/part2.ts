@@ -10,5 +10,5 @@ const countPositiveChanges = (values: number[]) => {
   ).length;
 };
 
-export const part2 = () =>
+export const solvePart = () =>
   runTest({ day: 1, part: 2, testMethod: countPositiveChanges });
