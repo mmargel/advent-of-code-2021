@@ -1,6 +1,7 @@
 import { getTestInput } from "./input.js";
 
-type TestMethod = (args: number[]) => void;
+type TestMethod = (args: string[]) => void;
+
 interface TestDetails {
   part: number;
   day: number;

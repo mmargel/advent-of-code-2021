@@ -13,8 +13,5 @@ export const getTestInput = ({ day, test = false }: InputArgs) => {
     test ? "test.txt" : "input.txt",
   ].join("/");
 
-  return readFileSync(inputPath)
-    .toString()
-    .split("\n")
-    .map((line) => +line);
+  return readFileSync(inputPath).toString().split("\n");
 };

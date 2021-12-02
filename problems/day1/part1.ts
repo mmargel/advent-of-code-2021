@@ -1,7 +1,8 @@
 import { runTest } from "../utils/runTest.js";
 
-const countPositiveChanges = (values: number[]) => {
-  return values.filter((_, index, array) =>
+const countPositiveChanges = (values: string[]) => {
+  const numericValues = values.map(parseInt);
+  return numericValues.filter((_, index, array) =>
     index == 0 ? false : array[index] > array[index - 1]
   ).length;
 };
