@@ -1,13 +1,13 @@
 import fs from "fs";
-
-const PARTS_PER_PROBLEM = 2;
+import { validateDay } from "./args.js";
+import { PARTS_PER_PROBLEM } from "./constants.js";
 
 const verifySolvePartMethod = (day, part, promiseResult) => {
   if (promiseResult.solvePart) {
     return true;
   } else {
     console.error(
-      `Day ${day}, Part ${part} does not define solvePart(values: number[])`
+      `Day ${day}, Part ${part} does not define solvePart(values: string[]) => number`
     );
     return false;
   }
@@ -15,14 +15,6 @@ const verifySolvePartMethod = (day, part, promiseResult) => {
 
 const logMissingPart = (day, part) => {
   console.error(`Could not find Day ${day}, Part ${part}`);
-};
-
-const validateDay = (day) => {
-  if (!day) {
-    throw new Error("Day number not supplies. Usage: yarn run day <dayNumber>");
-  } else if (day <= 0) {
-    throw new Error("Day number must be positive.");
-  }
 };
 
 const validateDayPath = (path, day) => {

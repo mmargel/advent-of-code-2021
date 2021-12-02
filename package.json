@@ -12,6 +12,7 @@
     "typescript": "^4.5.2"
   },
   "scripts": {
-    "day": "tsc --build && node ./scripts/solveProblem.js"
+    "day": "tsc --build && node ./scripts/solveProblem.js",
+    "setup": "node ./scripts/initializeProblem.js"
   }
 }
