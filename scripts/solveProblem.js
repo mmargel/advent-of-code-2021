@@ -28,7 +28,9 @@ const importAndRunParts = async (path, day, part) => {
     .then(
       (result) => verifySolvePartMethod(day, part, result) && result.solvePart()
     )
-    .catch(() => logMissingPart(day, part));
+    .catch((ex) => {
+      console.log("Error: ", ex.message);
+    });
 };
 
 const solveProblem = async (day) => {

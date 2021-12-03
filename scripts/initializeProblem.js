@@ -8,10 +8,12 @@ const DATA_ROOT = "./data";
 const getTemplate = (day, part) => `
 import { runTest } from "../utils/runTest.js";
 
-const findSolution = (_value: string[]) => 0;
+const findSolution = (_values: string[]) => {
+  throw new Error("Implement me!");
+};
 
 export const solvePart = () =>
-  runTest({ day: ${day}, part: ${part}, testMethod: findSolution });
+  runTest({ day: ${day}, part: ${part}, testMethod: findSolution, test: true });
 `;
 
 const createPart = (day, part) => {
