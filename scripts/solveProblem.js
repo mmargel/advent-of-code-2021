@@ -24,13 +24,9 @@ const validateDayPath = (path, day) => {
 };
 
 const importAndRunParts = async (path, day, part) => {
-  return import(`../${path}/part${part}.js`)
-    .then(
-      (result) => verifySolvePartMethod(day, part, result) && result.solvePart()
-    )
-    .catch((ex) => {
-      console.log("Error: ", ex.message);
-    });
+  return import(`../${path}/part${part}.js`).then(
+    (result) => verifySolvePartMethod(day, part, result) && result.solvePart()
+  );
 };
 
 const solveProblem = async (day) => {
