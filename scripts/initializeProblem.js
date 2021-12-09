@@ -8,8 +8,8 @@ const DATA_ROOT = "./data";
 const getTemplate = (day, part) => `
 import { runTest } from "../utils/runTest.js";
 
-const findSolution = (_values: string[]) => {
-  throw new Error("Implement me!");
+const findSolution = (_values: string[]) : number => {
+  return -1;
 };
 
 export const solvePart = () =>
