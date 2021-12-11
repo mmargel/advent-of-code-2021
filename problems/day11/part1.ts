@@ -6,9 +6,7 @@ type Point = [number, number];
 const ageOctopi = (octopi: Octopus[][]): void => {
   for (let i = 0; i < octopi.length; i++) {
     for (let j = 0; j < octopi[i].length; j++) {
-      if (typeof octopi[i][j] === "number") {
-        octopi[i][j] = (octopi[i][j] as number) + 1;
-      }
+      octopi[i][j]++;
     }
   }
 };
@@ -95,7 +93,7 @@ export const propagateOctopi = (
 const findSolution = (values: string[]): number => {
   const octopi = values.map((line) =>
     line.split("").map((val) => parseInt(val))
-  ) as Octopus[][];
+  );
 
   const [numberOfFlashes, _] = propagateOctopi(octopi, 100);
   return numberOfFlashes;
