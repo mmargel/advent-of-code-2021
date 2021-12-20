@@ -5,7 +5,7 @@ type Matrix = [
   [number, number, number],
   [number, number, number]
 ];
-type Vector = [number, number, number];
+export type Vector = [number, number, number];
 
 const rotate = (p: Vector, m: Matrix): Vector => {
   let result = [];
@@ -110,7 +110,7 @@ const getAllRotations = (): Matrix[] => {
   return permutations;
 };
 
-const getScannerResults = (values: string[]): Vector[][] => {
+export const getScannerResults = (values: string[]): Vector[][] => {
   const results: Vector[][] = [];
   let currentScanner = 0;
 
@@ -134,15 +134,22 @@ const getScannerResults = (values: string[]): Vector[][] => {
   return results;
 };
 
-const findSolution = (values: string[]): number => {
-  const [s0, ...unmatchedScanners] = getScannerResults(values);
+const getProbeKey = ([x, y, z]: Vector) => `${x}_${y}_${z}`;
+
+// I don't like this - it's too messy,but there isn't really a good way to clean it up.
+export const findScannersAndProbes = (
+  scannerResults: Vector[][]
+): [Vector[], Vector[]] => {
+  // Seed this with the s0 value
+  const scanners: Vector[] = [[0, 0, 0]];
+
+  const [s0, ...unmatchedScanners] = scannerResults;
   const rotations = getAllRotations();
   const requiredMatches = 12;
   let scannerIndex = 0;
 
   // Continue until all scanners have been matched
   while (unmatchedScanners.length > 0) {
-    // console.log("[scannerIndex]", scannerIndex);
     let matchFound = false;
 
     // Get the next scanner that we want to try to match
@@ -171,19 +178,18 @@ const findSolution = (values: string[]): number => {
           // We can assume that this works because if S2 maps to S1 (in S1 space), then S2 would also
           // map correctly to the S1 points when S1 is translated to S0 space.
           if (options[key] >= requiredMatches) {
-            console.log(
-              `MATCH FOUND: ${potentialS1} with rotation ${rotations[r]}`
-            );
+            // console.log(
+            //   `MATCH FOUND: ${potentialS1} with rotation ${rotations[r]}`
+            // );
             const translatedPoints = currentScanner.map((probe) =>
               add(potentialS1, rotate(probe, rotations[r]))
             );
-            const previousPoints = new Set(
-              s0.map(([x, y, z]) => `${x}_${y}_${z}`)
-            );
+            const previousPoints = new Set(s0.map(getProbeKey));
             const newPoints = translatedPoints.filter(
-              ([x, y, z]) => !previousPoints.has(`${x}_${y}_${z}`)
+              (probe) => !previousPoints.has(getProbeKey(probe))
             );
             s0.push(...newPoints);
+            scanners.push(potentialS1);
             matchFound = true;
             unmatchedScanners.splice(scannerIndex, 1);
             scannerIndex = 0;
@@ -199,7 +205,13 @@ const findSolution = (values: string[]): number => {
     }
   }
 
-  return s0.length;
+  return [scanners, s0];
+};
+
+const findSolution = (values: string[]): number => {
+  const scannerResults = getScannerResults(values);
+  const [, probes] = findScannersAndProbes(scannerResults);
+  return probes.length;
 };
 
 // 400
