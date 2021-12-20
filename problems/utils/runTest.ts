@@ -7,6 +7,7 @@ interface TestDetails {
   day: number;
   testMethod: TestMethod;
   test?: boolean;
+  allowComments?: boolean;
 }
 
 export const runTest = ({
@@ -14,8 +15,9 @@ export const runTest = ({
   part,
   testMethod,
   test = false,
+  allowComments = true,
 }: TestDetails) => {
-  const input = getTestInput({ day, test });
+  const input = getTestInput({ day, test, allowComments });
 
   process.stdout.write(`Running test: Day ${day}, Part ${part} ... `);
   const result = testMethod(input);

@@ -3,9 +3,14 @@ import { readFileSync } from "fs";
 export interface InputArgs {
   day: number;
   test: boolean;
+  allowComments: boolean;
 }
 
-export const getTestInput = ({ day, test = false }: InputArgs) => {
+export const getTestInput = ({
+  day,
+  test = false,
+  allowComments = true,
+}: InputArgs) => {
   const inputPath = [
     ".",
     "data",
@@ -16,5 +21,5 @@ export const getTestInput = ({ day, test = false }: InputArgs) => {
   return readFileSync(inputPath)
     .toString()
     .split("\n")
-    .filter((line) => line[0] != "#");
+    .filter((line) => !allowComments || line[0] != "#");
 };
