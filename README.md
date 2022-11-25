@@ -12,7 +12,7 @@ To set up a problem for a given day, you can use `yarn run setup $dayNum`.
 
 This will create `data/day<num>/input.txt` and `data/day<num>/test.txt`, the real and example data files, respectively. To populate these, you can just copy + paste the data directly from AOC (the example data is in the problem itself, the real data is linked from the main file).
 
-This will also create `problems/day<num>/part1.ts` and `problems/day<num>/part2.ts`, the files for parts 1 and 2, respectively. These are scaffolded with `findSolution` and `solvePart` methods, which are required by this framework. `findSolution` is where your solution should go. It will be given the input file as an array of strings, delimited by line. The file it gets the data from depends on whether the `test` flag that is passed into `runTest` is `true` or `false`; true will load the example data, false will load the real data.\
+This will also create `problems/day<num>/part1.ts` and `problems/day<num>/part2.ts`, the files for parts 1 and 2, respectively. These are scaffolded with `findSolution` and `solvePart` methods, which are required by this framework. `findSolution` is where your solution should go. It will be given the input file as an array of strings, delimited by line. The file it gets the data from depends on whether the `test` flag that is passed into `runTest` is `true` or `false`; `true` will load the example data, `false` will load the real data.
 
 #### Testing your solution
 
